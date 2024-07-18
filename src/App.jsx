@@ -1,5 +1,6 @@
 import "./App.css";
-import Nav from "./components/Nav/Nav.jsx";
+
+import "animate.css/animate.min.css";
 import Hero from "./components/Hero/Hero.jsx";
 import Introduction from "./components/Introduction/Introduction.jsx";
 import NotableProjects from "./components/NotableProjects/NotableProjects.jsx";
@@ -10,10 +11,6 @@ import Contact from "./components/Contact/Contact.jsx";
 function App() {
   return (
     <>
-      <div className="container mx-auto">
-        <Nav />
-      </div>
-
       <Hero />
 
       <Introduction />

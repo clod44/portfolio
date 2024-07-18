@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
-import SkillTree from "./SkillTree.js"; // Import SkillTree
+import GOL from "./GOL.js";
 
 function sketch(p5) {
   const getCanvasSize = () => {
@@ -11,44 +11,40 @@ function sketch(p5) {
     };
   };
 
-  let st;
-  const skills = [
-    { title: "javascript", something: 1 },
-    { title: "nodejs", something: 1 },
-    { title: "C#", something: 1 },
-    { title: "bootstrap", something: 1 },
-    { title: "tailwindcss", something: 1 },
-    { title: "react", something: 1 },
-    { title: "segs", something: 1 },
-  ];
-
+  let gol;
   p5.setup = () => {
     const { width, height } = getCanvasSize();
     p5.createCanvas(width, height);
-    st = new SkillTree(p5, skills);
+    gol = new GOL(p5, 0.05);
+    p5.smooth();
+    p5.frameRate(30);
   };
 
   p5.draw = () => {
-    p5.clear();
-    st.process();
-    st.show();
-    p5.ellipse(p5.mouseX, p5.mouseY, 100);
+    //p5.clear();
+    p5.background(0, 30);
+    gol.update();
+    if (
+      gol &&
+      p5.mouseX > 0 &&
+      p5.mouseY > 0 &&
+      p5.mouseX < p5.width &&
+      p5.mouseY < p5.height
+    ) {
+      gol.drawMouse(p5.mouseX, p5.mouseY);
+    }
+    p5.image(gol.pg, 0, 0, p5.width, p5.height);
   };
 
-  p5.mousePressed = () => {
-    if (st) st.handleMousePressed();
-  };
+  p5.mousePressed = () => {};
 
-  p5.mouseReleased = () => {
-    if (st) st.handleMouseReleased();
-  };
+  p5.mouseReleased = () => {};
 
-  p5.mouseDragged = () => {
-    if (st) st.handleMouseDragged();
-  };
+  p5.mouseDragged = () => {};
   p5.windowResized = () => {
     const { width, height } = getCanvasSize();
     p5.resizeCanvas(width, height);
+    gol = new GOL(p5, 0.1);
   };
 }
 

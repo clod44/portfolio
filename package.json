@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@p5-wrapper/react": "^4.4.2",
+    "animate.css": "^4.1.1",
     "p5": "^1.9.4",
     "react": "^18.2.0",
+    "react-animation-on-scroll": "^5.1.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

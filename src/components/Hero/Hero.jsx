@@ -1,41 +1,35 @@
+import React, { useState } from "react";
 import P5Canvas from "./P5Canvas";
+
 function Hero() {
+  const [hovered, setHovered] = useState(false);
+
+  const handleHover = () => {
+    setHovered(true);
+  };
+
+  const handleLeave = () => {
+    setHovered(false);
+  };
+
   return (
-    <div className="diff h-screen">
-      <div className="diff-item-1">
-        {/*
-        <div
-          className="bg-primary text-6xl font-black grid place-content-center bg-fixed"
-          style={{
-            backgroundImage: "url('/alita_hand.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-        */}
-        <div id="canvas-container-hero">
-          <P5Canvas />
-          <span className="drop-shadow-[0px_0px_0.1em_rgba(0,0,0,0.5)] p-10 text-black">
-            Art
-          </span>
-        </div>
-        {/*</div>*/}
+    <div className="relative h-screen" id="canvas-container-hero">
+      <div className="absolute top-0 left-0 w-full h-full blur">
+        <P5Canvas />
       </div>
-      <div className="diff-item-2 bg-primary">
-        <div
-          className="text-6xl font-black text-primary grid place-content-center bg-fixed"
-          style={{
-            backgroundImage: "url('/coding-bg.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+      <div
+        className={`absolute top-0 left-0 w-full h-full flex justify-center items-center transition-all duration-300 ${
+          hovered ? "bg-black" : ""
+        }`}
+      >
+        <h1
+          className="text-9xl text-secondary z-10 font-black hover:tracking-widest font-sans drop-shadow transition-all duration-300 hover:text-primary"
+          onMouseEnter={handleHover}
+          onMouseLeave={handleLeave}
         >
-          <span className="drop-shadow-[0px_0px_0.1em_rgba(255,255,100,0.5)] p-10 text-white">
-            Dev
-          </span>
-        </div>
+          CKMK
+        </h1>
       </div>
-      <div className="diff-resizer"></div>
     </div>
   );
 }
